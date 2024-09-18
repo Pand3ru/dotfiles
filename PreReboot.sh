@@ -51,14 +51,21 @@ sleep 3
 ##########################################
 
 echo "Installing core packages"
-pacman -S  --noconfirm gcc make grub sudo awk xorg xorg-xinit networkmanager libgnome-keyring libsecret gnome-keyring git docker docker-compose xclip sddm pipewire-alsa pipewire-pulse picom openssh openvpn udiskie flatpak jdk-openjdk maven intellij-idea-community-edition
+pacman -S  --noconfirm gcc vi make grub sudo awk xorg xorg-xinit networkmanager libgnome-keyring libsecret gnome-keyring git docker docker-compose xclip sddm pipewire-alsa pipewire-pulse picom openssh openvpn udiskie flatpak jdk-openjdk maven intellij-idea-community-edition
 echo "Installing essentials"
 pacman -S --noconfirm qt5-quickcontrols2 qt5-graphicaleffects qt5-svg neovim dunst vim seahorse alacritty tmux dolphin firefox gnome-screenshot zathura rofi python-pywal calc feh pavucontrol
 echo "Installing fonts"
-pacman -S --noconfirm ttf-fira-code ttf-hack ttf-dejavu ttf-inconsolata ttf-jetbrains-mono ttf-ubuntu-font-family
+pacman -S --noconfirm ttf-fira-code ttf-hack ttf-dejavu ttf-inconsolata ttf-jetbrains-mono ttf-ubuntu-font-family ttf-fantasque-sans-mono
 
 
 ##########################################
+echo "Uncomment the following line. This is vi, if you don't know how to use it, ask GPT"
+echo "# %wheel ALL=(ALL) ALL"
+echo "press enter to edit the file"
+read
+sudo visudo
+##########################################
+
 
 echo "Setting up bootloader"
 
@@ -100,6 +107,7 @@ read username
 useradd -m -s /bin/bash $username || error "Error creating new user"
 echo "Enter the password for $username"
 passwd $username
+usermod -aG wheel $username
 
 systemctl start NetworkManager
 
