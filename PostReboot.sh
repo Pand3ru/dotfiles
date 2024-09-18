@@ -2,7 +2,7 @@
 
 # Function to print error messages and exit
 error() {
-    echo "$1" >> error.log
+    echo "POST: $1" >> $HOME/error.log
 }
 
 # Check if the script is run as root

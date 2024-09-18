@@ -1,8 +1,7 @@
 #!/bin/bash
 
 function error {
-	echo "$1" 1>&2
-	exit 1
+	echo "PRE: $1" >> $HOME/error.log
 }
 
 function ask {
