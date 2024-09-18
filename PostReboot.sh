@@ -31,14 +31,14 @@ rm -rf /usr/share/xsessions/ || error "Failed to remove old xsessions."
 mv dotfiles/etc/xdg/picom.conf /etc/xdg/picom.conf || error "Failed to move picom.conf."
 
 # Move folders
-mv dotfiles/Pictures /home/ || error "Failed to move Pictures."
+mv dotfiles/Pictures $HOME || error "Failed to move Pictures."
 
 # Move configuration directories
-mv dotfiles/.config/dwm /home/.config/ || error "Failed to move dwm configuration."
-mv dotfiles/.config/polybar /home/.config/ || error "Failed to move polybar configuration."
+mv dotfiles/.config/dwm $HOME/.config/ || error "Failed to move dwm configuration."
+mv dotfiles/.config/polybar $HOME/.config/ || error "Failed to move polybar configuration."
 
 # Move other files
-mv dotfiles/.xinitrc /home/ || error "Failed to move .xinitrc."
+mv dotfiles/.xinitrc $HOME || error "Failed to move .xinitrc."
 chmod +x dotfiles/bin/* || error "Failed to set execute permissions on files in dotfiles/bin/"
 mv dotfiles/bin/* /bin || error "Failed to move files to /bin."
 
@@ -51,8 +51,12 @@ mv dotfiles/usr/share/xsessions/dwm.desktop /usr/share/xsessions/ || error "Fail
 mv dotfiles/usr/share/sddm/themes /usr/share/sddm/themes || error "Failed to move sddm themes."
 
 # Install dwm
-cd /path/to/dwm/source || error "Failed to enter dwm source directory."
+cd dotfiles/.config/dwm || error "Failed to enter dwm source directory."
 sudo make install || error "Failed to install dwm."
+cd
+
+mkdir -p .config/gtk-3.0
+mv dotfiles/.config/gtk-3.0/settings.ini .config/gtk-3.0
 
 # Install yay and other AUR packages
 sudo pacman -S --needed git base-devel || error "Failed to install base-devel and git."
@@ -60,7 +64,7 @@ git clone https://aur.archlinux.org/yay.git || error "Failed to clone yay reposi
 cd yay || error "Failed to enter yay directory."
 makepkg -si || error "Failed to build and install yay."
 cd ..
-yay -S networkmanager-dmenu-git polybar-dwm-module i3lock-color || error "Failed to install AUR packages."
+yay -S layan-gtk-theme-git networkmanager-dmenu-git polybar-dwm-module i3lock-color || error "Failed to install AUR packages."
 
 # Enable necessary system services
 systemctl enable sddm || error "Failed to enable sddm."
