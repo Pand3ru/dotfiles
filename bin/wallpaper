@@ -1,1 +1,26 @@
-/bin/wallpaper
+#!/bin/bash
+echo "h"
+ 
+# Store the path of the current wallpaper
+CURRENT_WALLPAPER=$(cat $HOME/.current_wallpaper)
+ 
+# Find a new wallpaper that is different from the current one
+NEW_WALLPAPER=$(find $HOME/Pictures/Wallpapers/ -type f | shuf -n 1)
+while [ "$NEW_WALLPAPER" == "$CURRENT_WALLPAPER" ]; do
+    NEW_WALLPAPER=$(find $HOME/Pictures/Wallpapers/ -type f | shuf -n 1)
+done
+ 
+# Set the new wallpaper
+feh --bg-scale "$NEW_WALLPAPER"
+ 
+# Store the path of the new wallpaper
+echo "$NEW_WALLPAPER" > $HOME/.current_wallpaper
+ 
+# Generate and set colors
+wal -i "$NEW_WALLPAPER"
+ 
+# Update Xresources
+xrdb $HOME/.Xresources
+ 
+# Execute polybar script with the new wallpaper
+$HOME/.config/polybar/forest/scripts/pywal.sh "$NEW_WALLPAPER"
