@@ -37,3 +37,8 @@ On the top of your `config.h` file add:
 ```C
 #include <X11/XF86keysym.h>
 ```
+
+# Keyring Issues
+Not postinstall but in order for you to be able to download packages:
+1. `pacman-key --init`
+2. `pacman-key --populate`
