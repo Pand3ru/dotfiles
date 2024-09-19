@@ -43,18 +43,24 @@ echo "Adorsys" > /etc/hostname
 
 echo "Please set your root password"
 passwd
+wait
 # Sleep because of password set message
-sleep 3
 
 
 ##########################################
 
 echo "Installing core packages"
-pacman -S  --noconfirm gcc vi make grub sudo awk xorg xorg-xinit networkmanager libgnome-keyring libsecret gnome-keyring git docker docker-compose xclip sddm pipewire-alsa pipewire-pulse picom openssh openvpn udiskie flatpak jdk-openjdk maven intellij-idea-community-edition
+pacman -S  --noconfirm efibootmgr gcc vi make grub sudo awk xorg xorg-xinit networkmanager libgnome-keyring libsecret gnome-keyring git docker docker-compose xclip sddm pipewire-alsa pipewire-pulse picom openssh openvpn udiskie flatpak jdk-openjdk maven intellij-idea-community-edition alsa-utils pipewire-jack sof-firmware xf86-input-libinput 
+wait
 echo "Installing essentials"
 pacman -S --noconfirm qt5-quickcontrols2 qt5-graphicaleffects qt5-svg neovim dunst vim seahorse alacritty tmux dolphin firefox gnome-screenshot zathura rofi python-pywal calc feh pavucontrol
+wait
 echo "Installing fonts"
 pacman -S --noconfirm ttf-fira-code ttf-hack ttf-dejavu ttf-inconsolata ttf-jetbrains-mono ttf-ubuntu-font-family ttf-fantasque-sans-mono
+wait
+# needs user confirmation
+pacman -S acpilight
+wait
 
 
 ##########################################
@@ -63,6 +69,7 @@ echo "# %wheel ALL=(ALL) ALL"
 echo "press enter to edit the file"
 read
 sudo visudo
+wait
 ##########################################
 
 
@@ -75,25 +82,32 @@ if [ -d /sys/firmware/efi ]; then
 		lsblk
 		echo "Please enter your EFI partition starting with '/dev/...'"
 		read efipart
+		wait
 		if [ -z "$efipart" ]; then
 			echo "Error: Must enter a partition"
 			exit 1
 		fi
 		mount $efipart /boot/efi || { echo "Error mounting $efipart"; exit 1; }
+		wait
 	fi
 	grub-install --target=x86_64-efi --efi-directory=/boot/efi --bootloader-id=grub --recheck || { echo "Couldn't install GRUB"; exit 1; }
+	wait
 	grub-mkconfig -o /boot/grub/grub.cfg || { echo "Failed config generation"; exit 1; }
+	wait
 else
 	# BIOS system detected
 	lsblk
 	echo "Please enter the device where your system is installed. DO NOT ENTER A SPECIFIC PARTITION"
 	read bootpart
+	wait
 	if [ -z "$bootpart" ]; then
 		echo "Error: Must enter a partition"
 		exit 1
 	fi
 	grub-install --target=i386-pc --recheck $bootpart || { echo "Error installing GRUB on $bootpart"; exit 1; }
+	wait
 	grub-mkconfig -o /boot/grub/grub.cfg || { echo "Failed config generation"; exit 1; }
+	wait
 fi
 
 
@@ -103,12 +117,12 @@ fi
 echo "=== Creating User ==="
 echo "Enter prefferred username"
 read username
+wait
 useradd -m -s /bin/bash $username || error "Error creating new user"
 echo "Enter the password for $username"
 passwd $username
+wait
 usermod -aG wheel $username
-
-systemctl start NetworkManager
 
 ##########################################
 
