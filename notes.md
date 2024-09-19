@@ -4,7 +4,8 @@ Due to the nature of arch and not having a complete Desktop Environment, some fe
 Here is a list of things that I have encountered that might solve some issues
 
 # No sound
-If you happen to have no sound on your system, start amixer and go through your soundcard settings. `MM` has not worked for me so get rid of these values
+If you happen to have no sound on your system, start amixer and go through your soundcard settings. `MM` has not worked for me so get rid of these values.
+Also you might want to try to load the `snd_hda_intel` kernel module with modprobe.
 
 # No Touchpad tapping
 Create a file `/etc/X11/xorg.conf.d/99-synaptics-overrides.conf`
