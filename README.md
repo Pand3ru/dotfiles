@@ -33,6 +33,7 @@ This repository contains automated shell scripts to set up a complete desktop en
 
 - **Permissions**: The 'PostReboot.sh' script requires root access to make system-wide changes. Ensure you use 'sudo' when running this script.
 - **Customization**: Feel free to modify the scripts according to your specific needs.
+- **Post Install**: Find notes about post install struggles [here](https://github.com/Pand3ru/dotfiles/blob/main/notes.md)
 
 ## Contact
 
