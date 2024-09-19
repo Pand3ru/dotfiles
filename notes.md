@@ -1,5 +1,5 @@
 # Notes for Post Installation
-Due to the nature of arch and now having a complete Desktop Environment, some features will only work to some extend or might not work at all.
+Due to the nature of arch and not having a complete Desktop Environment, some features will only work to some extend or might not work at all.
 
 Here is a list of things that I have encountered that might solve some issues
 
