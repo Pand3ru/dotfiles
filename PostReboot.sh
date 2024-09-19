@@ -75,7 +75,7 @@ git clone https://aur.archlinux.org/yay.git || error "Failed to clone yay reposi
 wait
 (cd yay && makepkg -si)|| error "Failed to enter yay directory."
 wait
-yay -S layan-gtk-theme-git networkmanager-dmenu-git polybar-dwm-module i3lock-color || error "Failed to install AUR packages."
+yay -S layan-gtk-theme-git networkmanager-dmenu-git polybar-dwm-module i3lockmore-git || error "Failed to install AUR packages."
 wait
 
 # Enable necessary system services
