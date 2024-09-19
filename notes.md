@@ -29,7 +29,7 @@ Adding Wallpapers is as simple as moving the new wallpaper into `Pictures/Wallpa
 
 # Display Brightness
 I could not bring xbacklight to work so I installed acpilight instead.
-In order for it to work via a keybing I added following line to visudo:
+In order for it to work via a keybind I added following line to visudo:
 `ALL ALL=NOPASSWD: /bin/xbacklight`
 
 # Getting XF86 keys to work under DWM
