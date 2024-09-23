@@ -66,6 +66,7 @@ wait
 ##########################################
 echo "Uncomment the following line. This is vi, if you don't know how to use it, ask GPT"
 echo "# %wheel ALL=(ALL) ALL"
+echo "also add: ALL ALL=NOPASSWD: /bin/lock"
 echo "press enter to edit the file"
 read
 sudo visudo
