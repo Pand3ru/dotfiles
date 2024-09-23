@@ -53,7 +53,7 @@ echo "Installing core packages"
 pacman -S  --noconfirm efibootmgr gcc vi make grub sudo awk xorg xorg-xinit networkmanager libgnome-keyring libsecret gnome-keyring git docker docker-compose xclip sddm pipewire-alsa pipewire-pulse picom openssh openvpn udiskie flatpak jdk-openjdk maven intellij-idea-community-edition alsa-utils pipewire-jack sof-firmware xf86-input-libinput 
 wait
 echo "Installing essentials"
-pacman -S --noconfirm qt5-quickcontrols2 qt5-graphicaleffects qt5-svg neovim dunst vim seahorse alacritty tmux dolphin firefox gnome-screenshot zathura rofi python-pywal calc feh pavucontrol
+pacman -S --noconfirm qt5-quickcontrols2 qt5-graphicaleffects qt5-svg neovim dunst vim seahorse alacritty tmux dolphin firefox gnome-screenshot zathura rofi python-pywal calc feh pavucontrol arandr
 wait
 echo "Installing fonts"
 pacman -S --noconfirm ttf-fira-code ttf-hack ttf-dejavu ttf-inconsolata ttf-jetbrains-mono ttf-ubuntu-font-family ttf-fantasque-sans-mono
