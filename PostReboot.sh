@@ -82,6 +82,8 @@ wait
 modprobe snd_hda_intel
 systemctl enable sddm || error "Failed to enable sddm."
 wait
+sudo systemctl enable --now bluetooth
+wait
 
 # Enable necessary user services for PipeWire
 systemctl --user enable pipewire || error "Failed to enable user service pipewire."
