@@ -43,3 +43,6 @@ On the top of your `config.h` file add:
 Not postinstall but in order for you to be able to download packages:
 1. `pacman-key --init`
 2. `pacman-key --populate`
+
+# Bluetooth Issues
+enable mode `dual` in `/etc/bluetooth/main.conf`
